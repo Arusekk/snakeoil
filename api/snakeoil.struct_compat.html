@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snakeoil.struct_compat module &#8212; snakeoil -trunk documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snakeoil.tar module" href="snakeoil.tar.html" />
+    <link rel="prev" title="snakeoil.strings module" href="snakeoil.strings.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.tar.html" title="snakeoil.tar module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.strings.html" title="snakeoil.strings module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" accesskey="U">snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.struct_compat module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-snakeoil.struct_compat">
+<span id="snakeoil-struct-compat-module"></span><h1>snakeoil.struct_compat module<a class="headerlink" href="#module-snakeoil.struct_compat" title="Permalink to this headline">¶</a></h1>
+<p>Minor struct enhancements, and python version compatibility implementations</p>
+<p>In usage, instead of importing struct you should just import this module instead.
+It’s designed to be a drop in replacement.</p>
+<dl class="py class">
+<dt id="snakeoil.struct_compat.Struct">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.struct_compat.</code><code class="sig-name descname">Struct</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/struct_compat.html#Struct"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.struct_compat.Struct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#snakeoil.struct_compat.Struct" title="snakeoil.struct_compat.Struct"><code class="xref py py-class docutils literal notranslate"><span class="pre">Struct</span></code></a></p>
+<p>Struct extension class adding <cite>read</cite> and <cite>write</cite> methods for handling files</p>
+<dl class="py method">
+<dt id="snakeoil.struct_compat.Struct.read">
+<code class="sig-name descname">read</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fd</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/struct_compat.html#Struct.read"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.struct_compat.Struct.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>given file like object <cite>fd</cite>, unpack a record from it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.struct_compat.Struct.write">
+<code class="sig-name descname">write</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">fd</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/struct_compat.html#Struct.write"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.struct_compat.Struct.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>given file like object <cite>fd</cite>, write a record from it</p>
+<p>args must match the number of required values for this instances
+format; see <a class="reference internal" href="#snakeoil.struct_compat.pack" title="snakeoil.struct_compat.pack"><code class="xref py py-func docutils literal notranslate"><span class="pre">pack()</span></code></a> for details.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.struct_compat.calcsize">
+<code class="sig-prename descclassname">snakeoil.struct_compat.</code><code class="sig-name descname">calcsize</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">format</span></em>, <em class="sig-param"><span class="o">/</span></em><span class="sig-paren">)</span><a class="headerlink" href="#snakeoil.struct_compat.calcsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return size in bytes of the struct described by the format string.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="snakeoil.struct_compat.error">
+<em class="property">exception </em><code class="sig-prename descclassname">snakeoil.struct_compat.</code><code class="sig-name descname">error</code><a class="headerlink" href="#snakeoil.struct_compat.error" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.struct_compat.pack">
+<code class="sig-prename descclassname">snakeoil.struct_compat.</code><code class="sig-name descname">pack</code><span class="sig-paren">(</span><em class="sig-param">format</em>, <em class="sig-param">v1</em>, <em class="sig-param">v2</em>, <em class="sig-param">...</em><span class="sig-paren">)</span> &#x2192; <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.9)">bytes</a><a class="headerlink" href="#snakeoil.struct_compat.pack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a bytes object containing the values v1, v2, … packed according
+to the format string.  See help(struct) for more on format strings.</p>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="snakeoil.strings.html"
+                        title="previous chapter">snakeoil.strings module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="snakeoil.tar.html"
+                        title="next chapter">snakeoil.tar module</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.tar.html" title="snakeoil.tar module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.strings.html" title="snakeoil.strings module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.struct_compat module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, snakeoil contributors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

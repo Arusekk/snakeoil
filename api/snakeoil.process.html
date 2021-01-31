@@ -1,0 +1,188 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snakeoil.process package &#8212; snakeoil -trunk documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snakeoil.process.namespaces module" href="snakeoil.process.namespaces.html" />
+    <link rel="prev" title="snakeoil.osutils.native_readdir module" href="snakeoil.osutils.native_readdir.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.process.namespaces.html" title="snakeoil.process.namespaces module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.osutils.native_readdir.html" title="snakeoil.osutils.native_readdir module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" accesskey="U">snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.process package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="snakeoil-process-package">
+<h1>snakeoil.process package<a class="headerlink" href="#snakeoil-process-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="snakeoil.process.namespaces.html">snakeoil.process.namespaces module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="snakeoil.process.spawn.html">snakeoil.process.spawn module</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-snakeoil.process">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-snakeoil.process" title="Permalink to this headline">¶</a></h2>
+<p>Process related utilities.</p>
+<dl class="py exception">
+<dt id="snakeoil.process.CommandNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">snakeoil.process.</code><code class="sig-name descname">CommandNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">command</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process.html#CommandNotFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.CommandNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="snakeoil.process.ProcessNotFound">
+<em class="property">exception </em><code class="sig-prename descclassname">snakeoil.process.</code><code class="sig-name descname">ProcessNotFound</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process.html#ProcessNotFound"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.ProcessNotFound" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.exit_as_status">
+<code class="sig-prename descclassname">snakeoil.process.</code><code class="sig-name descname">exit_as_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process.html#exit_as_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.exit_as_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exit the same way as <a href="#id1"><span class="problematic" id="id2">|status|</span></a>.</p>
+<p>If the status field says it was killed by a signal, then we’ll do that to
+ourselves.  Otherwise we’ll exit with the exit code.</p>
+<p>See <a class="reference external" href="http://www.cons.org/cracauer/sigint.html">http://www.cons.org/cracauer/sigint.html</a> for more details.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>status: A status as returned by os.wait type funcs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.find_binary">
+<code class="sig-prename descclassname">snakeoil.process.</code><code class="sig-name descname">find_binary</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">binary</span></em>, <em class="sig-param"><span class="n">paths</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fallback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process.html#find_binary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.find_binary" title="Permalink to this definition">¶</a></dt>
+<dd><p>look through the PATH environment, finding the binary to execute</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.get_exit_status">
+<code class="sig-prename descclassname">snakeoil.process.</code><code class="sig-name descname">get_exit_status</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process.html#get_exit_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.get_exit_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the exit status of a child from an os.waitpid call.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>status: The return value of os.waitpid(pid, 0)[1]</p>
+</dd>
+<dt>Returns:</dt><dd><p>The exit status of the process. If the process exited with a signal,
+the return value will be 128 plus the signal number.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.is_running">
+<code class="sig-prename descclassname">snakeoil.process.</code><code class="sig-name descname">is_running</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pid</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process.html#is_running"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.is_running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if a process is running or not.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>pid</strong> – a process ID</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><a class="reference internal" href="#snakeoil.process.ProcessNotFound" title="snakeoil.process.ProcessNotFound"><strong>ProcessNotFound</strong></a> – if pid doesn’t exist</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>boolean of whether the process is running or not</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">snakeoil.process package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-snakeoil.process">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="snakeoil.osutils.native_readdir.html"
+                        title="previous chapter">snakeoil.osutils.native_readdir module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="snakeoil.process.namespaces.html"
+                        title="next chapter">snakeoil.process.namespaces module</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.process.namespaces.html" title="snakeoil.process.namespaces module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.osutils.native_readdir.html" title="snakeoil.osutils.native_readdir module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.process package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, snakeoil contributors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snakeoil.process.spawn module &#8212; snakeoil -trunk documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snakeoil.bash module" href="snakeoil.bash.html" />
+    <link rel="prev" title="snakeoil.process.namespaces module" href="snakeoil.process.namespaces.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.bash.html" title="snakeoil.bash module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.process.namespaces.html" title="snakeoil.process.namespaces module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="snakeoil.process.html" accesskey="U">snakeoil.process package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.process.spawn module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-snakeoil.process.spawn">
+<span id="snakeoil-process-spawn-module"></span><h1>snakeoil.process.spawn module<a class="headerlink" href="#module-snakeoil.process.spawn" title="Permalink to this headline">¶</a></h1>
+<p>subprocess related functionality</p>
+<dl class="py function">
+<dt id="snakeoil.process.spawn.bash_version">
+<code class="sig-prename descclassname">snakeoil.process.spawn.</code><code class="sig-name descname">bash_version</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">force</span><span class="o">=</span><span class="default_value">False</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process/spawn.html#bash_version"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.spawn.bash_version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the system bash version of the form major.minor.patch.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.spawn.cleanup_pids">
+<code class="sig-prename descclassname">snakeoil.process.spawn.</code><code class="sig-name descname">cleanup_pids</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">pids</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process/spawn.html#cleanup_pids"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.spawn.cleanup_pids" title="Permalink to this definition">¶</a></dt>
+<dd><p>reap list of pids if specified, else all children</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.spawn.spawn">
+<code class="sig-prename descclassname">snakeoil.process.spawn.</code><code class="sig-name descname">spawn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mycommand</span></em>, <em class="sig-param"><span class="n">env</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">fd_pipes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">returnpid</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">uid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">gid</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">groups</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">umask</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">cwd</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pgid</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process/spawn.html#spawn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.spawn.spawn" title="Permalink to this definition">¶</a></dt>
+<dd><p>wrapper around execve</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> – controls what the process is named
+(what it would show up as under top for example)</p></li>
+<li><p><strong>fd_pipes</strong> (<em>mapping from existing fd to fd</em><em> (</em><em>inside the new process</em><em>)</em>) – controls what fd’s are left open in the spawned process-</p></li>
+<li><p><strong>returnpid</strong> – controls whether spawn waits for the process to finish,
+or returns the pid.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.spawn.spawn_bash">
+<code class="sig-prename descclassname">snakeoil.process.spawn.</code><code class="sig-name descname">spawn_bash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mycommand</span></em>, <em class="sig-param"><span class="n">debug</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process/spawn.html#spawn_bash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.spawn.spawn_bash" title="Permalink to this definition">¶</a></dt>
+<dd><p>spawn the command via bash -c</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.spawn.spawn_get_output">
+<code class="sig-prename descclassname">snakeoil.process.spawn.</code><code class="sig-name descname">spawn_get_output</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mycommand</span></em>, <em class="sig-param"><span class="n">spawn_type</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">raw_exit_code</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">collect_fds</span><span class="o">=</span><span class="default_value">(1)</span></em>, <em class="sig-param"><span class="n">fd_pipes</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">split_lines</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process/spawn.html#spawn_get_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.spawn.spawn_get_output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call spawn, collecting the output to fd’s specified in collect_fds list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>spawn_type</strong> – the passed in function to call- typically <a class="reference internal" href="#snakeoil.process.spawn.spawn_bash" title="snakeoil.process.spawn.spawn_bash"><code class="xref py py-func docutils literal notranslate"><span class="pre">spawn_bash()</span></code></a>
+<a class="reference internal" href="#snakeoil.process.spawn.spawn" title="snakeoil.process.spawn.spawn"><code class="xref py py-func docutils literal notranslate"><span class="pre">spawn()</span></code></a>, or <a class="reference internal" href="#snakeoil.process.spawn.spawn_sandbox" title="snakeoil.process.spawn.spawn_sandbox"><code class="xref py py-func docutils literal notranslate"><span class="pre">spawn_sandbox()</span></code></a>.
+Defaults to <a class="reference internal" href="#snakeoil.process.spawn.spawn" title="snakeoil.process.spawn.spawn"><code class="xref py py-func docutils literal notranslate"><span class="pre">spawn()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.process.spawn.spawn_sandbox">
+<code class="sig-prename descclassname">snakeoil.process.spawn.</code><code class="sig-name descname">spawn_sandbox</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mycommand</span></em>, <em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwds</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/process/spawn.html#spawn_sandbox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.process.spawn.spawn_sandbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>spawn the command under sandboxed</p>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="snakeoil.process.namespaces.html"
+                        title="previous chapter">snakeoil.process.namespaces module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="snakeoil.bash.html"
+                        title="next chapter">snakeoil.bash module</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.bash.html" title="snakeoil.bash module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.process.namespaces.html" title="snakeoil.process.namespaces module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="snakeoil.process.html" >snakeoil.process package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.process.spawn module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, snakeoil contributors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

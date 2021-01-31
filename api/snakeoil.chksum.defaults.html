@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snakeoil.chksum.defaults module &#8212; snakeoil -trunk documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snakeoil.cli package" href="snakeoil.cli.html" />
+    <link rel="prev" title="snakeoil.chksum package" href="snakeoil.chksum.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.cli.html" title="snakeoil.cli package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.chksum.html" title="snakeoil.chksum package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="snakeoil.chksum.html" accesskey="U">snakeoil.chksum package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.chksum.defaults module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-snakeoil.chksum.defaults">
+<span id="snakeoil-chksum-defaults-module"></span><h1>snakeoil.chksum.defaults module<a class="headerlink" href="#module-snakeoil.chksum.defaults" title="Permalink to this headline">¶</a></h1>
+<p>default chksum implementation- sha1, sha256, rmd160, and md5</p>
+<p>Specifically designed to provide maximal compatibility for &gt;=python2.4
+for chksum implementations, while also preferring the fastest implementation
+available.</p>
+<dl class="py class">
+<dt id="snakeoil.chksum.defaults.Chksummer">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.chksum.defaults.</code><code class="sig-name descname">Chksummer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">chf_type</span></em>, <em class="sig-param"><span class="n">obj</span></em>, <em class="sig-param"><span class="n">str_size</span></em>, <em class="sig-param"><span class="n">can_mmap</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#Chksummer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.Chksummer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.Chksummer.long2str">
+<code class="sig-name descname">long2str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#Chksummer.long2str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.Chksummer.long2str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.Chksummer.new">
+<code class="sig-name descname">new</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#Chksummer.new"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.Chksummer.new" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.Chksummer.str2long">
+<em class="property">static </em><code class="sig-name descname">str2long</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#Chksummer.str2long"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.Chksummer.str2long" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="snakeoil.chksum.defaults.SizeChksummer">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.chksum.defaults.</code><code class="sig-name descname">SizeChksummer</code><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#SizeChksummer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.SizeChksummer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#snakeoil.chksum.defaults.Chksummer" title="snakeoil.chksum.defaults.Chksummer"><code class="xref py py-class docutils literal notranslate"><span class="pre">snakeoil.chksum.defaults.Chksummer</span></code></a></p>
+<p>Size based chksum handler.</p>
+<p>yes, aware that size isn’t much of a chksum. ;)</p>
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.SizeChksummer.long2str">
+<em class="property">static </em><code class="sig-name descname">long2str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#SizeChksummer.long2str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.SizeChksummer.long2str" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.SizeChksummer.str2long">
+<em class="property">static </em><code class="sig-name descname">str2long</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#SizeChksummer.str2long"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.SizeChksummer.str2long" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="snakeoil.chksum.defaults.SizeUpdater">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.chksum.defaults.</code><code class="sig-name descname">SizeUpdater</code><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#SizeUpdater"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.SizeUpdater" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.SizeUpdater.hexdigest">
+<code class="sig-name descname">hexdigest</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#SizeUpdater.hexdigest"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.SizeUpdater.hexdigest" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.chksum.defaults.SizeUpdater.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">data</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#SizeUpdater.update"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.SizeUpdater.update" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.chksum.defaults.chf_thread">
+<code class="sig-prename descclassname">snakeoil.chksum.defaults.</code><code class="sig-name descname">chf_thread</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">queue</span></em>, <em class="sig-param"><span class="n">callback</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#chf_thread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.chf_thread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.chksum.defaults.chksum_loop_over_file">
+<code class="sig-prename descclassname">snakeoil.chksum.defaults.</code><code class="sig-name descname">chksum_loop_over_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span></em>, <em class="sig-param"><span class="n">chfs</span></em>, <em class="sig-param"><span class="n">parallelize</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">can_mmap</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#chksum_loop_over_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.chksum_loop_over_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.chksum.defaults.loop_over_file">
+<code class="sig-prename descclassname">snakeoil.chksum.defaults.</code><code class="sig-name descname">loop_over_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">handle</span></em>, <em class="sig-param"><span class="n">callbacks</span></em>, <em class="sig-param"><span class="n">parallelize</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">can_mmap</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/chksum/defaults.html#loop_over_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.chksum.defaults.loop_over_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="snakeoil.chksum.html"
+                        title="previous chapter">snakeoil.chksum package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="snakeoil.cli.html"
+                        title="next chapter">snakeoil.cli package</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.cli.html" title="snakeoil.cli package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.chksum.html" title="snakeoil.chksum package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="snakeoil.chksum.html" >snakeoil.chksum package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.chksum.defaults module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, snakeoil contributors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

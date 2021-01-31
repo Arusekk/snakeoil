@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snakeoil.contexts module &#8212; snakeoil -trunk documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snakeoil.currying module" href="snakeoil.currying.html" />
+    <link rel="prev" title="snakeoil.containers module" href="snakeoil.containers.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.currying.html" title="snakeoil.currying module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.containers.html" title="snakeoil.containers module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" accesskey="U">snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.contexts module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-snakeoil.contexts">
+<span id="snakeoil-contexts-module"></span><h1>snakeoil.contexts module<a class="headerlink" href="#module-snakeoil.contexts" title="Permalink to this headline">¶</a></h1>
+<p>Various with-statement context utilities.</p>
+<dl class="py class">
+<dt id="snakeoil.contexts.Namespace">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.contexts.</code><code class="sig-name descname">Namespace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mount</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">uts</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">ipc</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">net</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">pid</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">user</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">hostname</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/contexts.html#Namespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.contexts.Namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#snakeoil.contexts.SplitExec" title="snakeoil.contexts.SplitExec"><code class="xref py py-class docutils literal notranslate"><span class="pre">snakeoil.contexts.SplitExec</span></code></a></p>
+<p>Context manager that provides Linux namespace support.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="snakeoil.contexts.SplitExec">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.contexts.</code><code class="sig-name descname">SplitExec</code><a class="reference internal" href="../_modules/snakeoil/contexts.html#SplitExec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.contexts.SplitExec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Context manager separating code execution across parent/child processes.</p>
+<p>This is done by forking and doing some magic on the stack so the contents
+of the context are executed only on the forked child. Exceptions are
+pickled and passed back to the parent.</p>
+<dl class="py exception">
+<dt id="snakeoil.contexts.SplitExec.ParentException">
+<em class="property">exception </em><code class="sig-name descname">ParentException</code><a class="reference internal" href="../_modules/snakeoil/contexts.html#SplitExec.ParentException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.contexts.SplitExec.ParentException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/exceptions.html#Exception" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a></p>
+<p>Exception used to detect when the child terminates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.contexts.chdir">
+<code class="sig-prename descclassname">snakeoil.contexts.</code><code class="sig-name descname">chdir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/contexts.html#chdir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.contexts.chdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager that changes the current working directory.</p>
+<p>On exiting the context, the current working directory is switched back to
+its original value.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>path: The directory path to change the working directory to.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.contexts.patch">
+<code class="sig-prename descclassname">snakeoil.contexts.</code><code class="sig-name descname">patch</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">target</span></em>, <em class="sig-param"><span class="n">new</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/contexts.html#patch"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.contexts.patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simplified module monkey patching via context manager.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>target: Target class or object.
+new: Object or value to replace the target with.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="snakeoil.contexts.syspath">
+<code class="sig-prename descclassname">snakeoil.contexts.</code><code class="sig-name descname">syspath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">condition</span><span class="o">=</span><span class="default_value">True</span></em>, <em class="sig-param"><span class="n">position</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/contexts.html#syspath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.contexts.syspath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager that mangles sys.path and then reverts on exit.</p>
+<dl>
+<dt>Args:</dt><dd><p>path: The directory path to add to sys.path.
+condition: Optional boolean that decides whether sys.path is mangled or</p>
+<blockquote>
+<div><p>not, defaults to being enabled.</p>
+</div></blockquote>
+<dl class="simple">
+<dt>position: Optional integer that is the place where the path is inserted</dt><dd><p>in sys.path, defaults to prepending.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="snakeoil.containers.html"
+                        title="previous chapter">snakeoil.containers module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="snakeoil.currying.html"
+                        title="next chapter">snakeoil.currying module</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.currying.html" title="snakeoil.currying module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.containers.html" title="snakeoil.containers module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.contexts module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, snakeoil contributors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>

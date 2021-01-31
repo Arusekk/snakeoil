@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>snakeoil.tar module &#8212; snakeoil -trunk documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="snakeoil.version module" href="snakeoil.version.html" />
+    <link rel="prev" title="snakeoil.struct_compat module" href="snakeoil.struct_compat.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.version.html" title="snakeoil.version module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.struct_compat.html" title="snakeoil.struct_compat module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" accesskey="U">snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.tar module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-snakeoil.tar">
+<span id="snakeoil-tar-module"></span><h1>snakeoil.tar module<a class="headerlink" href="#module-snakeoil.tar" title="Permalink to this headline">¶</a></h1>
+<p>fixed up Tarfile implementation</p>
+<p>Specifically this grabs a copy of <a class="reference external" href="https://docs.python.org/3/library/tarfile.html#module-tarfile" title="(in Python v3.9)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tarfile</span></code></a> and applies a set of
+modifications- roughly a 33% memory reduction in usage</p>
+<p>Note that this modules initial setup semantics are technically racy- if the
+python implementation allows for the GIL to be swapped to a different thread
+during tarfile import (at literally the exact right moment) this version
+can bleed through.  Extremely unlikely chance (haven’t managed to even trigger
+it once yet), but the potential seems to be there.</p>
+<p>In usage, instead of importing tarfile you should just import this module
+instead.  It’s intended to be a drop in replacement.</p>
+<dl class="py class">
+<dt id="snakeoil.tar.ExFileObject">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.tar.</code><code class="sig-name descname">ExFileObject</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tarfile</span></em>, <em class="sig-param"><span class="n">tarinfo</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#ExFileObject"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.ExFileObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tarfile.ExFileObject</span></code></p>
+<dl class="py attribute">
+<dt id="snakeoil.tar.ExFileObject.exceptions">
+<code class="sig-name descname">exceptions</code><em class="property"> = (&lt;class 'OSError'&gt;,)</em><a class="headerlink" href="#snakeoil.tar.ExFileObject.exceptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="snakeoil.tar.TarInfo">
+<em class="property">class </em><code class="sig-prename descclassname">snakeoil.tar.</code><code class="sig-name descname">TarInfo</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span><span class="o">=</span><span class="default_value">''</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/tarfile.html#tarfile.TarInfo" title="(in Python v3.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tarfile.TarInfo</span></code></a></p>
+<p>Customized TarInfo implementation.</p>
+<p>Note that this implementation has a locked down set of __slots__.  The slotting
+doesn’t remove the underlying Dict being created (which we still pay memory for),
+but via using __slots__ we no longer pay the overallocation cost of dicts per
+TarInfo instance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><a class="reference internal" href="#snakeoil.tar.TarInfo.buf" title="snakeoil.tar.TarInfo.buf"><strong>buf</strong></a> – deletion and setting are disallowed in this implementation.
+This is done primarily to avoid having to have &gt;512 bytes per TarInfo
+object.</p></li>
+<li><p><a class="reference internal" href="#snakeoil.tar.TarInfo.gname" title="snakeoil.tar.TarInfo.gname"><strong>gname</strong></a> – same as TarInfo.gname, just interned via a property.</p></li>
+<li><p><a class="reference internal" href="#snakeoil.tar.TarInfo.uname" title="snakeoil.tar.TarInfo.uname"><strong>uname</strong></a> – same as TarInfo.uname, just interned via a property.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.buf">
+<em class="property">property </em><code class="sig-name descname">buf</code><a class="headerlink" href="#snakeoil.tar.TarInfo.buf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.del_buf">
+<code class="sig-name descname">del_buf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.del_buf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.del_buf" title="Permalink to this definition">¶</a></dt>
+<dd><p>the ability to delete the buffer is disabled in this
+patched version</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.del_gname">
+<code class="sig-name descname">del_gname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.del_gname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.del_gname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.del_uname">
+<code class="sig-name descname">del_uname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.del_uname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.del_uname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.get_buf">
+<code class="sig-name descname">get_buf</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.get_buf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.get_buf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.get_gname">
+<code class="sig-name descname">get_gname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.get_gname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.get_gname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.get_uname">
+<code class="sig-name descname">get_uname</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.get_uname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.get_uname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.gname">
+<em class="property">property </em><code class="sig-name descname">gname</code><a class="headerlink" href="#snakeoil.tar.TarInfo.gname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Group name.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.set_buf">
+<code class="sig-name descname">set_buf</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.set_buf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.set_buf" title="Permalink to this definition">¶</a></dt>
+<dd><p>the ability to set the buffer is disabled in this
+patched version</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.set_gname">
+<code class="sig-name descname">set_gname</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.set_gname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.set_gname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.set_uname">
+<code class="sig-name descname">set_uname</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">val</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/snakeoil/tar.html#TarInfo.set_uname"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#snakeoil.tar.TarInfo.set_uname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="snakeoil.tar.TarInfo.uname">
+<em class="property">property </em><code class="sig-name descname">uname</code><a class="headerlink" href="#snakeoil.tar.TarInfo.uname" title="Permalink to this definition">¶</a></dt>
+<dd><p>User name.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="snakeoil.struct_compat.html"
+                        title="previous chapter">snakeoil.struct_compat module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="snakeoil.version.html"
+                        title="next chapter">snakeoil.version module</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.version.html" title="snakeoil.version module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="snakeoil.struct_compat.html" title="snakeoil.struct_compat module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">snakeoil -trunk documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >snakeoil</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="snakeoil.html" >snakeoil package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">snakeoil.tar module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2007-2017, snakeoil contributors.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
+    </div>
+  </body>
+</html>
