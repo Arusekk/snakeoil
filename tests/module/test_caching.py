@@ -41,6 +41,7 @@ def gen_test(WeakInstMeta):
             assert o is kls()
             assert kls.counter == 1
             del o
+            gc.collect()
             kls()
             assert kls.counter == 2
 
@@ -50,6 +51,7 @@ def gen_test(WeakInstMeta):
                 o = weak_inst(disable_inst_caching=True)
                 assert weak_inst.counter is x
             del o
+            gc.collect()
             o = weak_inst()
             assert o is not weak_inst(disable_inst_caching=True)
 
@@ -158,6 +160,7 @@ def gen_test(WeakInstMeta):
             assert weak_inst.counter == 1
             _myid = id(o)
             del o
+            gc.collect()
             o = weak_inst(unique)
             assert weak_inst.counter == 2
 

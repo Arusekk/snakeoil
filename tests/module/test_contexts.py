@@ -85,7 +85,7 @@ class TestSplitExec:
         # make sure unpickleables don't cause issues
         with SplitExec() as c:
             func = lambda x: x
-            import sys
+            from sys import implementation
             a = 4
         assert c.locals == {'a': 4}
 
